@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conference booking and event order form">
+  <title>Conference Event Order</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">EO</span><div><strong>Event Order</strong><small>Conference & Meetings</small></div></div>
+    <span class="top-tag">BOOKING WORKSPACE</span>
+  </header>
+  <main class="shell">
+    <section class="intro">
+      <div><p class="eyebrow">CONFERENCE SERVICES</p><h1>Create an event order</h1>
+      <p class="subhead">Capture the booking details, room setup, catering and technical requirements in one place.</p></div>
+      <div class="order-chip"><span>ORDER STATUS</span><strong id="statusBadge">Draft</strong></div>
+    </section>
+    <div class="layout">
+      <form id="eventForm">
+        <section class="panel">
+          <div class="panel-heading"><span class="step">01</span><div><h2>Booking details</h2><p>Who is booking and what is the event?</p></div></div>
+          <div class="fields two">
+            <label>Event / conference name *<input name="eventName" required placeholder="e.g. Annual Leadership Conference"></label>
+            <label>Booking department *<input name="department" required placeholder="e.g. Sales & Marketing"></label>
+            <label>Contact person *<input name="contact" required placeholder="Full name"></label>
+            <label>Email address *<input name="email" type="email" required placeholder="name@company.com"></label>
+            <label>Contact phone<input name="phone" type="tel" placeholder="+254 ..."></label>
+            <label>Expected attendees *<input name="attendees" type="number" min="1" required value="30"></label>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-heading"><span class="step">02</span><div><h2>Date, time & venue</h2><p>Schedule and room requirements.</p></div></div>
+          <div class="fields two">
+            <label>Event date *<input name="eventDate" type="date" required></label>
+            <label>End date<input name="endDate" type="date"></label>
+            <label>Start time *<input name="startTime" type="time" required value="09:00"></label>
+            <label>End time *<input name="endTime" type="time" required value="17:00"></label>
+            <label class="full">Preferred venue / room<input name="venue" placeholder="e.g. Main Conference Hall"></label>
+            <label>Room layout<select name="layout"><option>Theatre</option><option>Classroom</option><option>Boardroom</option><option>U-shape</option><option>Banquet</option><option>Cabaret</option></select></label>
+            <label>Booking type<select name="bookingType"><option>Full day</option><option>Half day</option><option>Multi-day</option><option>Evening</option></select></label>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-heading"><span class="step">03</span><div><h2>Services & requirements</h2><p>Select the services required for this event.</p></div></div>
+          <div class="service-grid">
+            <label class="service"><input type="checkbox" name="services" value="Projector & screen"><span><b>Projector & screen</b><small>Presentation equipment</small></span></label>
+            <label class="service"><input type="checkbox" name="services" value="Microphones / PA"><span><b>Microphones / PA</b><small>Audio and amplification</small></span></label>
+            <label class="service"><input type="checkbox" name="services" value="Video conferencing"><span><b>Video conferencing</b><small>Hybrid meeting support</small></span></label>
+            <label class="service"><input type="checkbox" name="services" value="Tea / coffee"><span><b>Tea / coffee</b><small>Refreshment service</small></span></label>
+            <label class="service"><input type="checkbox" name="services" value="Lunch"><span><b>Lunch</b><small>Meal service</small></span></label>
+            <label class="service"><input type="checkbox" name="services" value="Stationery"><span><b>Stationery</b><small>Notepads and pens</small></span></label>
+          </div>
+          <label class="notes-label">Additional setup, dietary or accessibility notes<textarea name="notes" rows="4" placeholder="Room arrangement, dietary needs, signage, VIP requirements..."></textarea></label>
+        </section>
+        <section class="panel">
+          <div class="panel-heading"><span class="step">04</span><div><h2>Approval & confirmation</h2><p>Record the request for the events team.</p></div></div>
+          <div class="fields two">
+            <label>Requested by<input name="requestedBy" placeholder="Name / staff ID"></label>
+            <label>Priority<select name="priority"><option>Normal</option><option>High</option><option>Urgent</option></select></label>
+            <label class="full">Internal comments<textarea name="comments" rows="3" placeholder="Notes for the events or facilities team"></textarea></label>
+          </div>
+          <p class="notice">Submitting this form creates a printable draft in this browser only. It does not notify the venue or reserve the room.</p>
+          <div class="form-actions"><button type="reset" class="btn secondary">Clear form</button><button type="submit" class="btn primary">Generate event order ↗</button></div>
+        </section>
+      </form>
+      <aside class="summary">
+        <div class="summary-top"><div><p class="eyebrow">LIVE PREVIEW</p><h2>Event order</h2></div><span class="doc-icon">▤</span></div>
+        <p class="summary-intro">Your event details will appear here as you complete the form.</p>
+        <div class="summary-line"><span>Event</span><strong id="sumName">Untitled event</strong></div>
+        <div class="summary-line"><span>Date</span><strong id="sumDate">Not selected</strong></div>
+        <div class="summary-line"><span>Time</span><strong id="sumTime">09:00 – 17:00</strong></div>
+        <div class="summary-line"><span>Attendees</span><strong id="sumGuests">30 people</strong></div>
+        <div class="summary-line"><span>Venue</span><strong id="sumVenue">To be confirmed</strong></div>
+        <div class="summary-line"><span>Layout</span><strong id="sumLayout">Theatre</strong></div>
+        <div class="summary-services"><span>Selected services</span><ul id="sumServices"><li>No services selected</li></ul></div>
+        <div class="summary-footer"><span>ORDER REFERENCE</span><strong id="orderRef">EO-DRAFT</strong><small>Generated when you submit</small></div>
+        <button id="printBtn" class="btn outline" type="button">Print / Save as PDF</button>
+      </aside>
+    </div>
+    <footer>Conference Services · Event Order Workspace <span>Starter template</span></footer>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
